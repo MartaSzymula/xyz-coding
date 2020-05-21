@@ -50,23 +50,18 @@
         });
 
         $('.menu-link').click(function(event){
-            // Add in the code we want to execute here
-            // event.preventDefault()
 
-            var hrefval = $(this).attr('href').replace(/#/, '');  // #sports
+            var hrefval = $(this).attr('href').replace(/#/, '');
             if(!hrefval) return
 
-
-            console.log(hrefval);
             $('.sub-content').hide();
             $(`[data-id='${hrefval}']`).show();
-
-            // $('[data-id="script.js"]')
-            // [id="music"]
-            // #music
-
-            // // $('#music').hide();
         });
+
+        var hash = window.location.hash.replace(/#/, '') || 'sports';
+        // console.log(hash);
+        $(`[data-id='${hash}']`).show()
+
 
 
     </script>
