@@ -1,0 +1,18 @@
+.wrapper{
+  padding: 50px 200px;
+}
+
+
+h1{
+  text-align: ;
+}
+input{
+  width: 600px;
+  flex: 1;
+}
+.submit-task{
+  display: flex;
+}
+button{
+  /* flex: 1; */
+}
