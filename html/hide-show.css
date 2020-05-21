@@ -42,6 +42,10 @@ body{
 #sports{
     display: block;
 }
+[data-id='sports']{
+  display: block;
+}
+
 .additional-content{
     display: none;
 }
