@@ -1,0 +1,50 @@
+*{
+    font-family: 'Manrope', sans-serif;
+}
+body{
+    margin: 0;
+}
+.navbar{
+    padding: 25px;
+    text-align: right;
+    border-bottom: 1px solid #084177;
+}
+.navbar > a {
+    text-decoration: none;
+    margin: 10px 15px;
+    color: black;
+}
+.left-menu{
+    display: inline-block;
+    width: 20%;
+    border-right:1px solid black;
+    padding-top: 50px;
+    background:yellow;
+    min-height: 1000px;
+}
+.menu-link{
+    display:block;
+    text-decoration: none;
+    margin-bottom: 25px;
+    color: black;
+    margin-left: 25px;
+    font-size: 20px;
+}
+.content-area{
+    vertical-align: top;
+    display: inline-block;
+    width: 75%;
+}
+.sub-content{
+    padding-left: 25px;
+    display:none;
+}
+#sports{
+    display: block;
+}
+.additional-content{
+    display: none;
+}
+h1{
+    padding-left: 25px;
+}

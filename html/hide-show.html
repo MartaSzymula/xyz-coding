@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hide & Show</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="hide-show.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="navbar">
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+            <a href="#">About</a>
+        </div>
+        <div class="left-menu">
+            <a href="#sports" class='menu-link' data-page="sports">Sports</a>
+            <a href="#music" class='menu-link' data-page="music">Music</a>
+            <a href="#movies" class='menu-link' data-page="movies">Movies</a>
+        </div>
+        <div class="content-area">
+            <h1>Entertainment Hub</h1>
+            <div class="sub-content" id="sports">
+                <h2>Sports</h2>
+                <p>Teams won games with fans!</p>
+                <button class="show-more">See More Stories</button>
+                <div class="additional-content">
+                    <h3>Championships For Everyone</h3>
+                    <h3>Someone else cheated</h3>
+                </div>
+            </div>
+            <div class="sub-content" id="music">
+                <h2>Music</h2>
+                <p>People sang music with a guitar!</p>
+            </div>
+            <div class="sub-content" id="movies">
+                <h2>Movies</h2>
+                <p>Lots of CGI!</p>
+            </div>
+        </div>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        $('.show-more').click(function(){
+
+            $('.additional-content').toggle('additional-content');
+        });
+
+        $('.menu-link').click(function(){
+            // Add in the code we want to execute here
+
+            var text = $(this).data('page');
+            if(!text) return
+
+
+            console.log(text);
+            $('.sub-content').hide();
+            $(`#${text}`).show();
+            // // $('#music').hide();
+        });
+
+
+    </script>
+
+</body>
+</html>
