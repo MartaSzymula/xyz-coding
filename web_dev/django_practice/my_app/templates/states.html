@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>States</title>
+  </head>
+  <body>
+    <h2>List of states</h2>
+    {% for state in all_states %}
+      <li>Name: {{state.name}}</li>
+      <li>Abbreviation: {{state.abbr}}</li>
+    {% endfor %}
+  </body>
+</html>
