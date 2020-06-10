@@ -11,10 +11,13 @@
   <div class="wrapper">
     <h1>Your to-do List</h1>
 
-    <div class="submit-task">
-      <input type="text" name="" value="Laundry">
-      <button type="button" name="button">Add</button>
-      
+    <div class="">
+      <form class="submit-task" method="post">
+
+        <input type="text" class="new-task" value="Laundry">
+        <button type="submit" class="button">Add</button>
+
+      </form>
 
     </div>
 
@@ -23,22 +26,28 @@
     </div>
 
 
-
-
-
-
-
   </div>
-
-
 
   <script src="jquery.min.js"></script>
 
   <script type="text/javascript">
 
-    $('button').click
+    $('.submit-task').submit(function(e){
+      var task = $('.new-task').val();
+      e.preventDefault();
+      console.log(task)
+      $('.task-display').append(`<h3 class="task">${task} <button class="delete">&times;</button></h3>`)
 
-    $('.task-display').append(`<h3>${response.name}</h3>`)
+
+    });
+
+    $('.task-display').on('click', '.task', function(){
+      $(this).remove();
+    });
+    // this.parent.remove
+
+    // $('button').click
+
   </script>
 
 </body>

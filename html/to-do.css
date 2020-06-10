@@ -16,3 +16,11 @@ input{
 button{
   /* flex: 1; */
 }
+
+.delete{
+  display: none;
+}
+
+.task:hover .delete {
+  display: inline-block;
+}
