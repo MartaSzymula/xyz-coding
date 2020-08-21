@@ -1,7 +1,25 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.views.generic import View
+from .models import User
 
 # Create your views here.
+
+class CreateUserView(View):
+
+    def get(self, request):
+        User.objects.create(first_name='Fred', last_name='Weasley', email='fred@hogwarts.com')
+
+        return HttpResponse('Complete')
+
+class GetUsersView(View):
+    def get(self, request):
+        all_users = User.objects.all()
+        for user in all_users:
+            print(user)
+
+        return HttpResponse('Got all users')
+
+
 def index(request):
     if 'counter' in request.session:
         request.session['counter'] += 1
