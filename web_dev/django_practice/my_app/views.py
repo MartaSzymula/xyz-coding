@@ -7,7 +7,7 @@ from .models import User
 class CreateUserView(View):
 
     def get(self, request):
-        User.objects.create(first_name='Fred', last_name='Weasley', email='fred@hogwarts.com')
+        User.objects.create(first_name='Fred', last_name='Random', email='random@hogwarts.com')
 
         return HttpResponse('Complete')
 
@@ -17,16 +17,41 @@ class GetUsersView(View):
         for user in all_users:
             print(user)
 
+        # FILTERING
+        # freds = User.objects.filter(first_name='Fred')
+        # for f in freds:
+        #     print(f)
+        #
+        # GET
+        # get_user = User.objects.get(id=1)
+        # print(get_user)
+
         return HttpResponse('Got all users')
 
+class UpdateUsersView(View):
+    def get(self, request):
+        # User.objects.filter(id=3).update(first_name='George')
 
-def index(request):
-    if 'counter' in request.session:
-        request.session['counter'] += 1
-    else:
-        request.session = 1
+        user = User.objects.get(id=3)
+        user.last_name = 'Weasley'
+        user.save()
 
-    return render(request, 'index.html')
+        return redirect('/read/')
+
+class DeleteUsersView(View):
+    def get(self, request):
+        User.objects.get(id=2).delete()
+
+        return redirect('/read/')
+
+
+# def index(request):
+#     if 'counter' in request.session:
+#         request.session['counter'] += 1
+#     else:
+#         request.session = 1
+#
+#     return render(request, 'index.html')
 
 class login_view(View):
     def get(self, request):
