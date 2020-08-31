@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View
 
 from .models import Team
@@ -23,3 +23,14 @@ class TeamView(View):
             'team': team,
         }
         return render(request, 'team.html', context)
+
+
+class CreateTeamView(View):
+    def get(self, request):
+
+        return render(request, 'create.html')
+
+    def post(self,request):
+        print(request.POST)
+
+        return redirect('/teams/')

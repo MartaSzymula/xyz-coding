@@ -27,7 +27,7 @@
           {% for team in all_teams %}
           <tr>
             <td>
-              <a href="/team/{{team.id}}">{{team.id}}</a>
+              <a href="/teams/{{team.id}}">{{team.id}}</a>
             </td>
             <td>{{team.location}}</td>
             <td>{{team.name}}</td>
@@ -37,6 +37,8 @@
 
           {% endfor %}
         </table>
+
+        <a href="/teams/">Create New Team</a>
 
       </div>
 
