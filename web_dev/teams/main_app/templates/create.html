@@ -2,18 +2,37 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Teams | {{team.location}} {{team.name}}</title>
+    <title>Team Creator</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <h1>{{team.location}}  {{team.name}}' page</h1>
-          <p>Our official team mascot is {{team.mascot}}</p>
-          <a href="/teams/{{team.id}}/edit/">Update Team Info</a><br>
+          <h1>Create new Team</h1>
+          <form class="" action="/teams/" method="post">
 
-          <a href="/">Main page</a>
+            {% csrf_token %}
+
+            <div class="form-group">
+              <label for="nameInput">Team Name</label>
+              <input name='name' type="text" class="form-control" id="nameInput" placeholder="Lakers">
+            </div>
+
+            <div class="form-group">
+              <label for="locationInput">Team Location</label>
+              <input name='location' type="text" class="form-control" id="locationInput" placeholder="Los Angeles">
+            </div>
+
+            <div class="form-group">
+              <label for="mascotInput">Team Mascot</label>
+              <input name='mascot' type="text" class="form-control" id="mascotInput" placeholder="Lake">
+            </div>
+
+            <button class="btn btn-info">Add Team</button>
+
+          </form>
+
 
         </div>
 

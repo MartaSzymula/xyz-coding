@@ -31,6 +31,38 @@ class CreateTeamView(View):
         return render(request, 'create.html')
 
     def post(self,request):
-        print(request.POST)
+        new_name = request.POST.get('name')
+        new_location = request.POST.get('location')
+        new_mascot = request.POST.get('mascot')
 
-        return redirect('/teams/')
+        Team.objects.create(name=new_name, location=new_location, mascot=new_mascot)
+
+        return redirect('/')
+
+
+class EditTeamView(View):
+    def get(self, request, team_id):
+        team = Team.objects.get(id=team_id)
+        context = {
+            'team' : team
+        }
+
+        return render(request, 'edit.html', context)
+
+    def post(self, request, team_id):
+        team = Team.objects.get(id=team_id)
+
+        team.name = request.POST.get('name')
+        team.location = request.POST.get('location')
+        team.mascot = request.POST.get('mascot')
+
+        team.save()
+
+        return redirect(f'/teams/{team_id}/')
+
+class DeleteTeamView(View):
+    def get(self, request, team_id):
+        team = Team.objects.get(id=team_id)
+        team.delete()
+
+        return redirect('/')
