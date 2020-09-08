@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 
-from .models import Team
+from .models import Team, Player
 
 
 class IndexView(View):
     def get(self, request):
-        teams = Team.objects.all()
+        teams = Team.objects.all().order_by('location', 'name')
         context = {
             'all_teams' : teams,
         }
@@ -66,3 +66,20 @@ class DeleteTeamView(View):
         team.delete()
 
         return redirect('/')
+
+class AddPlayerView(View):
+    def post(self, request, team_id):
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+
+        try:
+            team = Team.objects.get(id=team_id)
+            print("Player created")
+        except Team.DoesNotExist:
+            print("Team doesn\'t exist")
+
+            return redirect(f'/teams/{team_id}/')
+
+        Player.objects.create(first_name=first_name, last_name=last_name, team=team)
+
+        return redirect(f'/teams/{team_id}/')

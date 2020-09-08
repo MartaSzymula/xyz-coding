@@ -17,6 +17,27 @@
 
         </div>
 
+      </div><br><br>
+      <div class="row">
+        <div class="col-sm-4">
+          <h3>Add New Player</h3>
+          <form class="" action="/teams/{{team.id}}/players/" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="first_nameInput">First Name</label>
+              <input name='first_name' type="text" class="form-control" id="first_nameInput" placeholder="Michael">
+            </div>
+            <div class="form-group">
+              <label for="last_nameInput">Last Name</label>
+              <input name='last_name' type="text" class="form-control" id="last_nameInput" placeholder="Jordan">
+            </div>
+            <button class="btn btn-info">Add Player</button>
+
+          </form>
+
+
+        </div>
+
       </div>
 
     </div>
