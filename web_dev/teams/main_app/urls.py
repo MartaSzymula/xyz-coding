@@ -8,4 +8,5 @@ urlpatterns = [
     path('teams/<int:team_id>/edit/', views.EditTeamView.as_view()),
     path('teams/<int:team_id>/delete/', views.DeleteTeamView.as_view()),
     path('teams/<int:team_id>/players/', views.AddPlayerView.as_view()),
+    path('teams/<int:team_id>/<int:player_id>/', views.DeletePlayerView.as_view()),
 ]

@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
+from django.db.models import Count
 
 from .models import Team, Player
 
 
 class IndexView(View):
     def get(self, request):
-        teams = Team.objects.all().order_by('location', 'name')
+        teams = Team.objects.all().annotate(player_count=Count('players')).order_by('location', 'name')
         context = {
             'all_teams' : teams,
         }
@@ -18,9 +19,10 @@ class TeamView(View):
     def get(self, request, team_id):
 
         team = Team.objects.get(id=team_id)
-        print(team)
+        players = Player.objects.filter(team=team)
         context = {
             'team': team,
+            'all_players' : players
         }
         return render(request, 'team.html', context)
 
@@ -83,3 +85,10 @@ class AddPlayerView(View):
         Player.objects.create(first_name=first_name, last_name=last_name, team=team)
 
         return redirect(f'/teams/{team_id}/')
+
+class DeletePlayerView(View):
+    def get(self, request, player_id, team_id):
+        player = Player.objects.get(id=player_id)
+        player.delete()
+
+        return redirect(f'/teams/{team_id}')
