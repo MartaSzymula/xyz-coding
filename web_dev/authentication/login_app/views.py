@@ -3,9 +3,12 @@ from django.views import View
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
 class IndexView(View):
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('/home/')
 
         return render(request, 'index.html')
 
@@ -39,7 +42,7 @@ class RegistrationView(View):
             is_valid = False
             messages.error(request, 'email must be at least 6 characters.')
 
-        if len(password) < 8:
+        if len(password) < 6:
             is_valid = False
             messages.error(request, 'password must be at least 8 characters.')
 
@@ -63,3 +66,34 @@ class RegistrationView(View):
             print(user.password)
 
             return redirect('/')
+
+
+class LoginView(View):
+    def post(self, request):
+        user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
+        if user is not None:
+            login(request, user)
+            messages.error(request, 'Login successful')
+        else:
+
+            messages.error(request, 'Username and password do not match.')
+
+        return redirect('/')
+
+
+
+class HomeView(View):
+    def get(self, request):
+        if not request.user.is_authenticated:
+
+            messages.error(request, 'You\'re not logged in')
+            return redirect('/')
+
+        return render(request, 'home.html')
+
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+
+        return redirect('/')

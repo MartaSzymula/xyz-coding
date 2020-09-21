@@ -54,7 +54,24 @@
         </form>
 
       </div>
+      <div class="col-sm-12 col-md-6">
+        <h3>Login</h3>
+        <form class="" action="/login/" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="usernameInput">Username</label>
+            <input type="text" class="form-control" name="username" id="usernameInput" placeholder="jsmith">
+          </div>
+          <div class="form-group">
+            <label for="passwordInput">Password</label>
+            <input type="password" class="form-control" name="password" id="passwordInput" placeholder="Password">
+          </div>
+          <button class="btn btn-primary">Login</button>
 
+        </form>
+
+
+      </div>
     </div>
 
   </div>
