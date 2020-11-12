@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 class IndexView(View):
     def get(self, request):
@@ -82,14 +84,16 @@ class LoginView(View):
 
 
 
-class HomeView(View):
+class HomeView(LoginRequiredMixin, View):
+    login_url = '/'
     def get(self, request):
-        if not request.user.is_authenticated:
-
-            messages.error(request, 'You\'re not logged in')
-            return redirect('/')
 
         return render(request, 'home.html')
+
+@login_required(login_url='/')
+def home_page(request):
+
+    return render(request, 'home.html')
 
 
 class LogoutView(View):
